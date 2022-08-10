@@ -21,7 +21,7 @@ func main() {
 		klog.Fatal(err)
 	}
 
-	klog.Info(addr)
+	klog.Info("addr = ", addr)
 
 	svr := mapdemo.NewServer(
 		new(MapServiceImpl),
@@ -33,4 +33,5 @@ func main() {
 	if err != nil {
 		log.Println(err.Error())
 	}
+
 }

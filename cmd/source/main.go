@@ -57,13 +57,13 @@ func main() {
 
 			for msg := range pc.Messages() {
 				// 发送msg到map算子
-				//fmt.Println("Partition:%d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, string(msg.Value))
+				fmt.Println("Partition:%d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, string(msg.Value))
 
 				err := rpc.CreateMap(context.Background(), &mapdemo.CreateMapRequest{
 					string(msg.Value),
 				})
 				if err != nil {
-					klog.Fatal("call map service failed")
+					klog.Fatal("call map service failed, ", err)
 				}
 			}
 			wg.Done()

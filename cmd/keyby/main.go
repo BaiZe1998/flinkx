@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+
 	enginConfig := config.GetConfig()
 
 	ServiceAddr := fmt.Sprintf("%s:%d", enginConfig.Keyby.Ip, enginConfig.Keyby.Port)

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"math/rand"
-	"sync"
 	"time"
 	"word-count/cmd/keyby/pack"
 	"word-count/config"
@@ -35,13 +34,11 @@ func init() {
 		klog.Fatal("DAG中指定的keyby数量过小/过大")
 	}
 	keybyIdx = 0
-	wg := sync.WaitGroup{}
 	keybyChanList = make([]chan *keybydemo.CreateKeybyRequest, 0)
 	for i := 1; i <= keybyNum; i++ {
-		wg.Add(1)
 		ch := make(chan *keybydemo.CreateKeybyRequest, 1)
 		keybyChanList = append(keybyChanList, ch)
-		go func(chan *keybydemo.CreateKeybyRequest, *sync.WaitGroup, int) {
+		go func(chan *keybydemo.CreateKeybyRequest, int) {
 			// reduce服务客户端初始化
 			//rpc.InitReduceRPC()
 			for {
@@ -52,10 +49,8 @@ func init() {
 				klog.Info(fmt.Sprintf("当前处理的是keyby算子%d号，消息内容为%s", keybyIdx, msg))
 
 			}
-			wg.Done()
-		}(ch, &wg, keyIdx)
+		}(ch, keyIdx)
 	}
-	wg.Wait()
 }
 
 func HandleKeybyMsg(req *keybydemo.CreateKeybyRequest) {

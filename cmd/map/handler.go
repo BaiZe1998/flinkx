@@ -48,7 +48,7 @@ func init() {
 		wg.Add(1)
 		ch := make(chan string, 1)
 		mapChanList = append(mapChanList, ch)
-		go func(chan string, *sync.WaitGroup, *regexp.Regexp, int64) {
+		go func(chan string, *regexp.Regexp, int64) {
 			// keyby服务客户端初始化
 			rpc.InitKeybyRPC()
 			for {
@@ -77,10 +77,8 @@ func init() {
 				}
 			}
 
-			wg.Done()
-		}(ch, &wg, baizeRegexp, keyValue)
+		}(ch, baizeRegexp, keyValue)
 	}
-	wg.Wait()
 }
 
 func HandleSourceMsg(req *mapdemo.CreateMapRequest) {
