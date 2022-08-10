@@ -1,0 +1,21 @@
+mode: on # on/off 表示DAG是否生效
+source:
+  num: 1
+  data-from: # 数据源列表
+    - 82.156.171.8:10004
+map:
+  num: 2
+  regexp: ([a-zA-Z]+),([0-9]+) # map获取数据key列表
+  value: 1 # 映射的value
+keyby:
+  num: 2
+  key: 0 # key列表的索引，选择一个作为key
+window:
+  func: sum # sum/max/min 窗口层面的聚合
+  assign: 30 # 滚动窗口时间间隔
+reduce:
+  num: 1
+  aggregation: sum # sum/max/min 这里的针对所有通过窗口发送过来的数据可以选择二次聚合
+sink:
+  num: 1
+  data-to: terminal

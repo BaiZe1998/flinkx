@@ -1,0 +1,24 @@
+source:
+  num: 1
+  ip: 127.0.0.1
+  port: 9001
+map:
+  num: 2
+  ip: 127.0.0.1
+  port: 9002
+  lb: round   # round or hash
+keyby:
+  num: 3
+  ip: 127.0.0.1
+  port: 9003
+reduce:
+  num: 1
+  ip: 127.0.0.1
+  port: 9004
+sink:
+  num: 1
+  ip: 127.0.0.1
+  port: 9005
+
+
+
