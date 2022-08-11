@@ -11,7 +11,8 @@ keyby:
   num: 2
   key: 0 # key列表的索引，选择一个作为key
 window:
-  func: sum # sum/max/min 窗口层面的聚合
+  func: sum # sum/max/min 窗口层面的聚合函数
+  filter: distinct # 过滤函数 窗口聚合之后再处理，针对聚合之后的值（retract语义）
   assign: 30 # 滚动窗口时间间隔
 reduce:
   num: 1
