@@ -13,7 +13,7 @@ keyby:
 window:
   func: sum # sum/max/min 窗口层面的聚合函数
   filter: distinct # 过滤函数 窗口聚合之后再处理，针对聚合之后的值（retract语义）
-  assign: 30 # 滚动窗口时间间隔
+  assign: 30s # 滚动窗口时间间隔
 reduce:
   num: 1
   aggregation: sum # sum/max/min 这里的针对所有通过窗口发送过来的数据可以选择二次聚合
