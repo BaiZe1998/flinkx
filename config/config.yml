@@ -15,6 +15,7 @@ reduce:
   num: 1
   ip: 127.0.0.1
   port: 9004
+  lb: round   # round or hash
 sink:
   num: 1
   ip: 127.0.0.1

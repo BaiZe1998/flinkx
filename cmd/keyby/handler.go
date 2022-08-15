@@ -8,9 +8,11 @@ import (
 	"strconv"
 	"sync"
 	"time"
+	"word-count/cmd/api/rpc"
 	"word-count/cmd/keyby/pack"
 	"word-count/config"
 	"word-count/kitex_gen/keybydemo"
+	"word-count/kitex_gen/reducedemo"
 	"word-count/pkg/errno"
 )
 
@@ -26,6 +28,7 @@ var (
 	windowFunc    string
 	windowFilter  string
 	windowAssign  string
+	tables        []string
 )
 
 func init() {
@@ -36,6 +39,7 @@ func init() {
 	windowFunc = config.GlobalDAGConfig.GetString("window.func")
 	windowFilter = config.GlobalDAGConfig.GetString("window.filter")
 	windowAssign = config.GlobalDAGConfig.GetString("window.assign")
+	tables = config.GlobalDAGConfig.GetStringSlice("window.table")
 	maxNum = config.GetConfig().Keyby.Num
 	// DAG中map算子数量非法状态
 	if keybyNum <= 0 || keybyNum > maxNum {
@@ -68,7 +72,7 @@ func WindowFuncSum() {
 	go func(chan *keybydemo.CreateKeybyRequest, int) {
 
 		// reduce服务客户端初始化
-		//rpc.InitReduceRPC()
+		rpc.InitReduceRPC()
 		// TODO 分区初始化，应该是map结构，然后不断更新当前内容（目前是累加，然后定期清空，暂时不考虑retract语义）
 		// TODO 需要一个计时器，定期获取发送过来的数据的时间戳,根据window的参数配置，创建窗口，进行水位线的定时获取
 		// TODO 为每个逻辑分区给一个watermark，然后取一个最小值，后续小于该水位线的数据到达则无效不统计
@@ -133,6 +137,27 @@ func WindowFuncSum() {
 
 						// TODO 调用reduce服务
 						klog.Info(fmt.Sprintf("调用下游reduce算子服务，将统计结果发送给下游，%v内词频统计结果表为：%v", windowAssign, filterMap))
+						// 消费数据，调用keyby算子的client方法，传递DataStream结构
+						tumpleList := make([]*reducedemo.Tuple, 0)
+
+						klog.Info("tables ============", tables)
+
+						for k, _ := range filterMap {
+							tumple := &reducedemo.Tuple{strconv.FormatInt(k, 10), filterMap[k], tables[1]}
+							tumpleList = append(tumpleList, tumple)
+						}
+						for k, _ := range keyMap {
+							tumple := &reducedemo.Tuple{k, keyMap[k], tables[0]}
+							tumpleList = append(tumpleList, tumple)
+						}
+
+						err := rpc.CreateReduce(context.Background(), &reducedemo.CreateReduceRequest{
+							tumpleList,
+							msg.TimeStamp,
+						})
+						if err != nil {
+							klog.Fatal("call reduce service failed")
+						}
 
 						// 初始化窗口
 						klog.Info(fmt.Sprintf("滚动初始化窗口，更新minWaterMark为 %v +++++++++++++++++++++++++++++", nextWaterMark))

@@ -1,2 +1,2 @@
 server:
-	kitex -module word-count -service keybydemo ../../idl/keyby.thrift
+	kitex -module word-count -service reducedemo ../../idl/reduce.thrift
