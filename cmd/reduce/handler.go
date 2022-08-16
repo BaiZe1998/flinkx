@@ -7,7 +7,9 @@ import (
 	"math/rand"
 	"strconv"
 	"time"
+	"word-count/cmd/api/rpc"
 	"word-count/cmd/reduce/pack"
+	"word-count/cmd/sink/kitex_gen/sinkdemo"
 	"word-count/config"
 	"word-count/kitex_gen/reducedemo"
 	"word-count/pkg/errno"
@@ -44,7 +46,7 @@ func init() {
 		reduceChanList = append(reduceChanList, ch)
 		go func(chan *reducedemo.CreateReduceRequest) {
 			// keyby服务客户端初始化
-			//rpc.InitKeybyRPC()
+			rpc.InitSinkRPC()
 
 			tableMap1 := make(map[string]int64)
 			tableMap2 := make(map[string]int64)
@@ -67,6 +69,17 @@ func init() {
 					if timeNow.After(nextTime) {
 						preTime = &timeNow
 						klog.Info(fmt.Sprintf("每隔%v的时间段统计一次数据，表%v的结果为%v，表%v的结果为%v", windowAssign, tables[0], tableMap1, tables[1], tableMap2))
+
+						// 消费数据，调用keyby算子的client方法，传递DataStream结构
+						content := []map[string]int64{tableMap1, tableMap2}
+						err := rpc.CreateSink(context.Background(), &sinkdemo.CreateSinkRequest{
+							content,
+							msg.TimeStamp,
+						})
+						if err != nil {
+							klog.Fatal("call keyby service failed")
+						}
+
 						tableMap1 = make(map[string]int64)
 						tableMap2 = make(map[string]int64)
 						goto LOOP
