@@ -4,7 +4,7 @@ package sinkservice
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo"
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.

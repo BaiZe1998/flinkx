@@ -9,9 +9,9 @@ import (
 	"time"
 	"word-count/cmd/api/rpc"
 	"word-count/cmd/reduce/pack"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
 	"word-count/config"
 	"word-count/kitex_gen/reducedemo"
+	"word-count/kitex_gen/sinkdemo"
 	"word-count/pkg/errno"
 )
 

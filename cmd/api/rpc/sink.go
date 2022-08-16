@@ -6,9 +6,9 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"log"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
-	"word-count/cmd/sink/kitex_gen/sinkdemo/sinkservice"
 	"word-count/config"
+	"word-count/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo/sinkservice"
 	"word-count/pkg/constants"
 	"word-count/pkg/errno"
 )

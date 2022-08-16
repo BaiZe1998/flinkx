@@ -3,7 +3,7 @@ package sinkservice
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo"
 )
 
 // NewServer creates a server.Server with the given handler and options.

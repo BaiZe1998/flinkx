@@ -6,8 +6,8 @@ import (
 	"github.com/cloudwego/kitex/server"
 	"log"
 	"net"
-	sinkdemo "word-count/cmd/sink/kitex_gen/sinkdemo/sinkservice"
 	"word-count/config"
+	sinkdemo "word-count/kitex_gen/sinkdemo/sinkservice"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"context"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.

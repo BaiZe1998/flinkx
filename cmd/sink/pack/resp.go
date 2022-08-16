@@ -3,7 +3,7 @@ package pack
 import (
 	"errors"
 	"time"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo"
 	"word-count/pkg/errno"
 )
 

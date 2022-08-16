@@ -6,7 +6,7 @@ import (
 	"context"
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
+	"word-count/kitex_gen/sinkdemo"
 )
 
 func serviceInfo() *kitex.ServiceInfo {

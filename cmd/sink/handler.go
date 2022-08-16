@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"word-count/cmd/sink/kitex_gen/sinkdemo"
 	"word-count/cmd/sink/pack"
+	"word-count/kitex_gen/sinkdemo"
 	"word-count/pkg/errno"
 )
 
