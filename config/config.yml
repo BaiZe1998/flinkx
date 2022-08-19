@@ -1,3 +1,6 @@
+job:
+  ip: 127.0.0.1
+  port: 9000
 source:
   num: 1
   ip: 127.0.0.1

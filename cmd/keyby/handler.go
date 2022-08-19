@@ -156,7 +156,7 @@ func WindowFuncSum() {
 							msg.TimeStamp,
 						})
 						if err != nil {
-							klog.Fatal("call reduce service failed")
+							klog.Error("call reduce service failed")
 						}
 
 						// 初始化窗口

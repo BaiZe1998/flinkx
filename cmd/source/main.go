@@ -63,7 +63,7 @@ func main() {
 					string(msg.Value),
 				})
 				if err != nil {
-					klog.Fatal("call map service failed, ", err)
+					klog.Error("call map service failed, ", err)
 				}
 			}
 			wg.Done()

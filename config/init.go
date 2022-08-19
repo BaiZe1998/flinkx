@@ -9,6 +9,7 @@ import (
 )
 
 type EngineConfig struct {
+	Job    Job    `yaml:"job"`
 	Sink   Sink   `yaml:"sink"`
 	Source Source `yaml:"source"`
 	Map    Map    `yaml:"map"`
@@ -31,6 +32,11 @@ type Reduce struct {
 
 type Sink struct {
 	Num  int    `yaml:"num"`
+	Ip   string `yaml:"ip"`
+	Port int    `yaml:"port"`
+}
+
+type Job struct {
 	Ip   string `yaml:"ip"`
 	Port int    `yaml:"port"`
 }

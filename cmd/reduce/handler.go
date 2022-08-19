@@ -77,7 +77,7 @@ func init() {
 							msg.TimeStamp,
 						})
 						if err != nil {
-							klog.Fatal("call keyby service failed")
+							klog.Error("call keyby service failed")
 						}
 
 						tableMap1 = make(map[string]int64)

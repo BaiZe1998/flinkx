@@ -73,7 +73,7 @@ func init() {
 					params[len(params)-1],
 				})
 				if err != nil {
-					klog.Fatal("call keyby service failed")
+					klog.Error("call keyby service failed")
 				}
 			}
 
