@@ -16,6 +16,7 @@ func main() {
 	h := server.Default(server.WithHostPorts(ServiceAddr), server.WithMaxRequestBodySize(20<<20))
 
 	h.POST("/upload", handler.Upload)
+	h.POST("/cancel", handler.Cancel)
 
 	h.Spin()
 }
