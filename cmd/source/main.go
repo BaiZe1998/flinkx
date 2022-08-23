@@ -64,11 +64,14 @@ LOOP:
 				// 发送msg到map算子
 				fmt.Println("Partition:%d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, string(msg.Value))
 
+				// 如果下游没有在nacos的列表中则会报错
 				err := rpc.CreateMap(context.Background(), &mapdemo.CreateMapRequest{
 					string(msg.Value),
 				})
 				if err != nil {
 					klog.Error("call map service failed, ", err)
+					// TODO 上游服务熔断 & 下游拉起服务
+
 				}
 			}
 			wg.Done()

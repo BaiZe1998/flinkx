@@ -103,4 +103,5 @@ func (s *MapServiceImpl) CreateMap(ctx context.Context, req *mapdemo.CreateMapRe
 	resp = new(mapdemo.CreateMapResponse)
 	resp.BaseResp = pack.BuildBaseResp(errno.Success)
 	return resp, nil
+	//return nil, errors.New("something is wrong")
 }

@@ -3,6 +3,7 @@ package rpc
 import (
 	"context"
 	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/circuitbreak"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/kitex-contrib/registry-nacos/resolver"
 	"log"
@@ -26,6 +27,7 @@ func InitSinkRPC() {
 		constants.SinkServiceName,
 		client.WithResolver(r),
 		client.WithRPCTimeout(time.Second*3),
+		client.WithCircuitBreaker(circuitbreak.NewCBSuite(nil)),
 	)
 	if err != nil {
 		log.Fatal(err)
