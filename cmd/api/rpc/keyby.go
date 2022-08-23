@@ -2,11 +2,11 @@ package rpc
 
 import (
 	"context"
-	"fmt"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/kitex-contrib/registry-nacos/resolver"
 	"log"
-	"word-count/config"
+	"time"
 	"word-count/kitex_gen/keybydemo"
 	"word-count/kitex_gen/keybydemo/keybyservice"
 	"word-count/pkg/constants"
@@ -16,12 +16,16 @@ import (
 var keybyClient keybyservice.Client
 
 func InitKeybyRPC() {
+	r, err := resolver.NewDefaultNacosResolver()
+	if err != nil {
+		panic(err)
+	}
 
-	enginConfig := config.GetConfig()
-
-	ServiceAddr := fmt.Sprintf("%s:%d", enginConfig.Keyby.Ip, enginConfig.Keyby.Port)
-
-	c, err := keybyservice.NewClient(constants.KeybyServiceName, client.WithHostPorts(ServiceAddr))
+	c, err := keybyservice.NewClient(
+		constants.KeybyServiceName,
+		client.WithResolver(r),
+		client.WithRPCTimeout(time.Second*3),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}

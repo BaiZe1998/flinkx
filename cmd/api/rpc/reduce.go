@@ -2,11 +2,11 @@ package rpc
 
 import (
 	"context"
-	"fmt"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/kitex-contrib/registry-nacos/resolver"
 	"log"
-	"word-count/config"
+	"time"
 	"word-count/kitex_gen/reducedemo"
 	"word-count/kitex_gen/reducedemo/reduceservice"
 	"word-count/pkg/constants"
@@ -17,11 +17,15 @@ var reduceClient reduceservice.Client
 
 func InitReduceRPC() {
 
-	enginConfig := config.GetConfig()
+	r, err := resolver.NewDefaultNacosResolver()
+	if err != nil {
+		panic(err)
+	}
 
-	ServiceAddr := fmt.Sprintf("%s:%d", enginConfig.Reduce.Ip, enginConfig.Reduce.Port)
-
-	c, err := reduceservice.NewClient(constants.ReduceServiceName, client.WithHostPorts(ServiceAddr))
+	c, err := reduceservice.NewClient(
+		constants.ReduceServiceName,
+		client.WithResolver(r),
+		client.WithRPCTimeout(time.Second*3))
 	if err != nil {
 		log.Fatal(err)
 	}

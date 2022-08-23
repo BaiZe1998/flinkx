@@ -60,7 +60,6 @@ LOOP:
 				if config.GlobalDAGConfig.GetString("mode") == "off" {
 					break
 				}
-				klog.Info(config.GlobalDAGConfig.GetString("mode"))
 
 				// 发送msg到map算子
 				fmt.Println("Partition:%d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, string(msg.Value))

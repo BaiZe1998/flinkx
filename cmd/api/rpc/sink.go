@@ -2,11 +2,11 @@ package rpc
 
 import (
 	"context"
-	"fmt"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/kitex-contrib/registry-nacos/resolver"
 	"log"
-	"word-count/config"
+	"time"
 	"word-count/kitex_gen/sinkdemo"
 	"word-count/kitex_gen/sinkdemo/sinkservice"
 	"word-count/pkg/constants"
@@ -17,11 +17,16 @@ var sinkClient sinkservice.Client
 
 func InitSinkRPC() {
 
-	enginConfig := config.GetConfig()
+	r, err := resolver.NewDefaultNacosResolver()
+	if err != nil {
+		panic(err)
+	}
 
-	ServiceAddr := fmt.Sprintf("%s:%d", enginConfig.Sink.Ip, enginConfig.Sink.Port)
-
-	c, err := sinkservice.NewClient(constants.SinkServiceName, client.WithHostPorts(ServiceAddr))
+	c, err := sinkservice.NewClient(
+		constants.SinkServiceName,
+		client.WithResolver(r),
+		client.WithRPCTimeout(time.Second*3),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}

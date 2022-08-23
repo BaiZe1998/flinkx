@@ -3,14 +3,22 @@ package main
 import (
 	"fmt"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
+	"github.com/kitex-contrib/registry-nacos/registry"
 	"log"
 	"net"
 	"word-count/config"
 	mapdemo "word-count/kitex_gen/mapdemo/mapservice"
+	"word-count/pkg/constants"
 )
 
 func main() {
+
+	r, err := registry.NewDefaultNacosRegistry()
+	if err != nil {
+		panic(err)
+	}
 
 	enginConfig := config.GetConfig()
 
@@ -25,6 +33,8 @@ func main() {
 
 	svr := mapdemo.NewServer(
 		new(MapServiceImpl),
+		server.WithRegistry(r),
+		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: constants.MapServiceName}),
 		server.WithServiceAddr(addr), // address
 	)
 

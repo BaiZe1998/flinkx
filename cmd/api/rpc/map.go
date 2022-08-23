@@ -2,11 +2,11 @@ package rpc
 
 import (
 	"context"
-	"fmt"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/kitex-contrib/registry-nacos/resolver"
 	"log"
-	"word-count/config"
+	"time"
 	"word-count/kitex_gen/mapdemo"
 	"word-count/kitex_gen/mapdemo/mapservice"
 	"word-count/pkg/constants"
@@ -17,11 +17,14 @@ var mapClient mapservice.Client
 
 func InitMapRPC() {
 
-	enginConfig := config.GetConfig()
-
-	ServiceAddr := fmt.Sprintf("%s:%d", enginConfig.Map.Ip, enginConfig.Map.Port)
-
-	c, err := mapservice.NewClient(constants.MapServiceName, client.WithHostPorts(ServiceAddr))
+	r, err := resolver.NewDefaultNacosResolver()
+	if err != nil {
+		panic(err)
+	}
+	c, err := mapservice.NewClient(
+		constants.MapServiceName,
+		client.WithResolver(r),
+		client.WithRPCTimeout(time.Second*3))
 	if err != nil {
 		log.Fatal(err)
 	}
