@@ -35,7 +35,7 @@ https://github.com/BaiZe1998/flinkx
 
 ### 2. 服务调用关系
 
-![image-20220824161952846](https://baize-blog-images.oss-cn-shanghai.aliyuncs.com/img/image-20220824161952846.png)
+![image-20220824164723742](https://baize-blog-images.oss-cn-shanghai.aliyuncs.com/img/image-20220824164723742.png)
 
 ### 3. 代码介绍
 
