@@ -31,7 +31,7 @@ func main() {
 
 	for {
 		idx := rand.Intn(len(wordList))
-		//time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 3)
 		msg.Value = sarama.StringEncoder(wordList[idx] + "," + strconv.FormatInt(time.Now().Unix(), 10))
 		pid, offset, err := client.SendMessage(msg)
 		if err != nil {

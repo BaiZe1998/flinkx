@@ -70,8 +70,7 @@ LOOP:
 				})
 				if err != nil {
 					klog.Error("call map service failed, ", err)
-					// TODO 上游服务熔断 & 下游拉起服务
-
+					// TODO 上游服务熔断 & 下游拉起服务（下游没有可以使用的服务）
 				}
 			}
 			wg.Done()

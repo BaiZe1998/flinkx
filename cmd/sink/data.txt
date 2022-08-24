@@ -1,0 +1,3 @@
+table:[map[apple:3 banana:3 orange:1 peach:1 potato:1 tomato:1 watermelon:1] map[1:5 2:0 3:2]] timeStamp:1661326427
+table:[map[apple:1 orange:1 peach:2 potato:1 watermelon:1] map[1:4 2:1]] timeStamp:1661326460
+table:[map[orange:3 peach:2 tomato:1 watermelon:5] map[1:1 2:1 3:1 4:0 5:1]] timeStamp:1661326491
