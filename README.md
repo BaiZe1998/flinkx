@@ -110,11 +110,17 @@ go run word-count/cmd/sink
 
 ## 存在的问题
 
-
+1. 伪分布式：当前每类算子占用一个进程，而相同算子的并发通过该进程内的协程并发实现，并没有实现JobManager和TaskManager的调度模型
+2. DataStream结构没有清晰定义
+3. 引擎的功能与DAG任务描述之间存在耦合性
+4. 算子的负载均衡规则较为简单
 
 ## 下一步计划
 
+1. Kitex开启opentelemetry链路追踪扩展，选择Jaeger渲染链路
+2. 故障恢复（服务拉起）
 
-
-
+3. 一致性语义（at least once || exactly once）
+4. 项目重构：实现JobManager和TaskManager模块，算子的创建符合Flink的模式
+5. 算子shuffle倾斜优化
 
