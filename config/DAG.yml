@@ -23,4 +23,3 @@ reduce:
 sink:
   num: 1
   data-to: terminal
-

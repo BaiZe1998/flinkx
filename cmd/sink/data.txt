@@ -1,3 +1,16 @@
 table:[map[apple:3 banana:3 orange:1 peach:1 potato:1 tomato:1 watermelon:1] map[1:5 2:0 3:2]] timeStamp:1661326427
 table:[map[apple:1 orange:1 peach:2 potato:1 watermelon:1] map[1:4 2:1]] timeStamp:1661326460
 table:[map[orange:3 peach:2 tomato:1 watermelon:5] map[1:1 2:1 3:1 4:0 5:1]] timeStamp:1661326491
+table:[map[banana:1 orange:2 peach:3 potato:1 tomato:2 watermelon:1] map[1:3 2:2 3:1]] timeStamp:1661433768
+table:[map[apple:2 banana:1 orange:3 peach:2 potato:3 tomato:1 watermelon:2] map[1:2 2:3 3:2]] timeStamp:1661433799
+table:[map[apple:1 banana:6 orange:2 peach:1 potato:2 tomato:1 watermelon:2] map[1:4 2:3 3:0 4:0 5:1]] timeStamp:1661433844
+table:[map[apple:1 banana:1 orange:2 peach:2 tomato:3 watermelon:1] map[1:3 2:2 3:1]] timeStamp:1661433878
+table:[map[apple:1 banana:3 orange:1 peach:1 tomato:3 watermelon:5] map[1:3 2:1 3:3]] timeStamp:1661433920
+table:[map[apple:3 banana:2 orange:2 peach:2 potato:2 watermelon:1] map[1:1 2:4 3:1]] timeStamp:1661433954
+table:[map[apple:1 banana:5 orange:1 peach:3 potato:2 tomato:2 watermelon:2] map[1:8 2:2 3:0 4:1]] timeStamp:1661434002
+table:[map[apple:1 banana:4 orange:1 tomato:2 watermelon:1] map[1:3 2:1 3:0 4:1]] timeStamp:1661434033
+table:[map[apple:1 banana:1 orange:1 peach:1 potato:2 tomato:3 watermelon:2] map[1:4 2:2 3:1]] timeStamp:1661434066
+table:[map[apple:1 orange:1 peach:2 potato:3 tomato:2 watermelon:1] map[1:3 2:2 3:1]] timeStamp:1661434100
+table:[map[apple:3 orange:4 peach:1 potato:4 tomato:1 watermelon:1] map[1:5 2:1 3:1 4:1]] timeStamp:1661434145
+table:[map[apple:1 banana:5 orange:3 peach:3 potato:3 tomato:2 watermelon:1] map[1:6 2:3 3:2]] timeStamp:1661434200
+table:[map[apple:2 banana:3 peach:1 potato:2 tomato:1 watermelon:2] map[1:2 2:3 3:1]] timeStamp:1661434239

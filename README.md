@@ -23,15 +23,15 @@ https://github.com/BaiZe1998/flinkx
 
 ### 1. 项目模块介绍
 
-| 服务名称 |             模块介绍              | 技术框架 | 传输协议 | 注册中心 |  日志  |     数据存取      |
-| :------: | :-------------------------------: | :------: | :------: | :------: | :----: | :---------------: |
-|   api    | 接受HTTP请求提交流处理任务（DAG） | `hertz`  |  `http`  | `nacos`  | `klog` |      `hertz`      |
-|   data   |         数据生产导入kafka         | `kitex`  | `thrift` |          |        | `kafka`、`sarama` |
-|  source  |         从kafka中消费数据         |          |          |          |        | `kitex`、`sarama` |
-|   map    |            map算子服务            |          |          |          |        |                   |
-|  keyby   |           keyby算子服务           |          |          |          |        |                   |
-|  reduce  |          reduce算子服务           |          |          |          |        |                   |
-|   sink   |           sink算子服务            |          |          |          |        |      `file`       |
+| 服务名称 |             模块介绍              | 技术框架 | 传输协议 | 注册中心 |  日志  |     数据存取      | 配置存取 |
+| :------: | :-------------------------------: | :------: | :------: | :------: | :----: | :---------------: | :------: |
+|   api    | 接受HTTP请求提交流处理任务（DAG） | `hertz`  |  `http`  | `nacos`  | `klog` |      `hertz`      | `viper`  |
+|   data   |         数据生产导入kafka         | `kitex`  | `thrift` |          |        | `kafka`、`sarama` |          |
+|  source  |         从kafka中消费数据         |          |          |          |        | `kitex`、`sarama` |          |
+|   map    |            map算子服务            |          |          |          |        |                   |          |
+|  keyby   |           keyby算子服务           |          |          |          |        |                   |          |
+|  reduce  |          reduce算子服务           |          |          |          |        |                   |          |
+|   sink   |           sink算子服务            |          |          |          |        |      `file`       |          |
 
 ### 2. 服务调用关系
 
